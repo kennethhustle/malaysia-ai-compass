@@ -15,7 +15,7 @@ const BORDER   = '#E5E7EB';
 const BG_GRAY  = '#F9FAFB';
 const WHITE    = '#FFFFFF';
 
-const HUSTLE_LOGO_URL = '/hustle-logo.png';
+const HUSTLE_LOGO_URL = 'https://portal.hustle.com.sg/wp-content/uploads/2026/02/Hustle-Singapore-Logo.png';
 
 /* ─── Badge colour maps ──────────────────────────────────────────────────── */
 const DIFF_BADGE: Record<string, { bg: string; color: string }> = {
