@@ -15,7 +15,7 @@ const BORDER   = '#E5E7EB';
 const BG_GRAY  = '#F9FAFB';
 const WHITE    = '#FFFFFF';
 
-const HUSTLE_LOGO_URL = 'https://cdn.prod.website-files.com/69a817c94060f9d4bfb1c760/6a30a3c0c492b6aab3d7804f_Hustle%20Logo%20(Full%20Colour).png';
+const HUSTLE_LOGO_URL = '/hustle-logo.png';
 
 /* ─── Badge colour maps ──────────────────────────────────────────────────── */
 const DIFF_BADGE: Record<string, { bg: string; color: string }> = {
@@ -78,7 +78,7 @@ function PageHeader({ company }: { company: string }) {
       padding: '12px 44px', borderBottom: `1px solid ${BORDER}`, marginBottom: 24,
     }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={HUSTLE_LOGO_URL} alt="Hustle Malaysia" style={{ height: 32, width: 'auto', objectFit: 'contain' }} />
+      <img src={HUSTLE_LOGO_URL} alt="Hustle Malaysia" style={{ height: 48, width: 'auto', objectFit: 'contain' }} />
       <span style={{ fontSize: 14, color: LIGHT }}>AI Opportunity Scan Report · {company}</span>
     </div>
   );
@@ -235,7 +235,7 @@ export default function A4Report({ data }: { data: ReportData }) {
           padding: '16px 36px', borderBottom: `1px solid ${BORDER}`,
         }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={HUSTLE_LOGO_URL} alt="Hustle Malaysia" style={{ height: 32, width: 'auto', objectFit: 'contain' }} />
+          <img src={HUSTLE_LOGO_URL} alt="Hustle Malaysia" style={{ height: 48, width: 'auto', objectFit: 'contain' }} />
           <span style={{ color: '#9ca3af', fontSize: 15, fontWeight: 500, letterSpacing: 0.3 }}>AI Opportunity Scan Report</span>
         </div>
 
