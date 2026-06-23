@@ -89,7 +89,7 @@ export const QUESTIONS: Question[] = [
     sectionIndex: 0,
     question: 'What is your company name?',
     type: 'text',
-    placeholder: 'e.g. Acme Pte Ltd',
+    placeholder: 'e.g. Acme Sdn Bhd',
     required: true,
   },
   {
