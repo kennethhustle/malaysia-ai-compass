@@ -60,8 +60,11 @@ function buildHtmlDocument(bodyHtml: string): string {
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; }
+    body { font-family: 'Urbanist', -apple-system, 'Helvetica Neue', Arial, sans-serif; }
     ${PRINT_CSS}
   </style>
 </head>
