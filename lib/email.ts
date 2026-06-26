@@ -409,7 +409,7 @@ export async function sendClientEmail(data: ReportData, pdfBuffer: Buffer) {
   await transporter.sendMail({
     from: `"Hustle Malaysia" <${process.env.GMAIL_USER}>`,
     to: contact.email,
-    bcc: 'kenneth@hustle.com.my',
+    bcc: 'hello@hustle.com.my',
     subject: 'Your Hustle Malaysia AI Opportunity Scan Report Is Ready',
     html: buildClientEmailHtml(data),
     text: buildClientEmailText(data),
