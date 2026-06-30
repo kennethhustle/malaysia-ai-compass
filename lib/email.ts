@@ -409,7 +409,7 @@ export async function sendClientEmail(data: ReportData, pdfBuffer: Buffer) {
   await transporter.sendMail({
     from: `"Hustle Malaysia" <${process.env.GMAIL_USER}>`,
     to: contact.email,
-    bcc: 'hello@hustle.com.my',
+    bcc: 'kenneth@hustle.com.my, Cathrynn@hustle.com.my',
     subject: 'Your Hustle Malaysia AI Opportunity Scan Report Is Ready',
     html: buildClientEmailHtml(data),
     text: buildClientEmailText(data),
@@ -473,7 +473,7 @@ export async function sendInternalNotification(
 
   await transporter.sendMail({
     from: `"Hustle Malaysia AI Compass" <${process.env.GMAIL_USER}>`,
-    to: 'hello@hustle.com.my',
+    to: 'hello@hustle.com.my, kenneth@hustle.com.my, Cathrynn@hustle.com.my',
     subject: `[New Lead] ${contact.name} — ${contact.company} · Score: ${score.total}/100 (${score.level})`,
     html,
   });
