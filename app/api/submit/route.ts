@@ -69,31 +69,40 @@ export async function POST(req: NextRequest) {
 
   const { answers, contact } = parsed.data as any;
 
+  console.log(`[Submit] New submission — Name: ${contact.name} | Company: ${contact.company} | Email: ${contact.email} | Phone: ${contact.phone} | Dept: ${answers.department} | Industry: ${answers.industry}`);
+  console.log(`[Submit] Gmail user configured: ${!!process.env.GMAIL_USER} | Gmail password configured: ${!!process.env.GMAIL_APP_PASSWORD}`);
+
   let browser: any;
   try {
     const score = calculateScore(answers);
+    console.log(`[Submit] Score calculated: ${score.total}/100 (${score.level})`);
 
     // Generate report content first, then connect browser immediately before use.
     // (Browserless closes idle WebSocket connections — don't connect until needed.)
+    console.log('[Submit] Generating report content via Claude...');
     const reportContent = await generateReportContent(answers, score, contact);
+    console.log('[Submit] Report content generated successfully');
 
     const reportData: ReportData = { contact, answers, score, reportContent };
 
     browser = await launchBrowser();
     const pdfBuffer = await renderPDF(reportData, browser);
+    console.log(`[Submit] PDF ready — ${pdfBuffer.length} bytes`);
 
     // ── Run all post-PDF tasks in parallel ──
+    console.log('[Submit] Starting post-PDF tasks (email + sheets)...');
     await Promise.allSettled([
-      sendClientEmail(reportData, pdfBuffer).catch(e =>
-        console.error('[Email] Client email failed (non-fatal):', e)
-      ),
-      sendInternalNotification(contact, answers, score).catch(e =>
-        console.error('[Email] Internal notification failed (non-fatal):', e)
-      ),
+      sendClientEmail(reportData, pdfBuffer)
+        .then(() => console.log(`[Email] Client email sent to ${contact.email}`))
+        .catch(e => console.error('[Email] Client email FAILED:', e?.message ?? e)),
+      sendInternalNotification(contact, answers, score)
+        .then(() => console.log('[Email] Internal notification sent to hello@hustle.com.my'))
+        .catch(e => console.error('[Email] Internal notification FAILED:', e?.message ?? e)),
       appendToGoogleSheet(contact, answers, score).catch(e =>
         console.error('[Google Sheets] Non-fatal error:', e)
       ),
     ]);
+    console.log('[Submit] All post-PDF tasks complete');
 
     return NextResponse.json({ success: true, score: score.total, level: score.level });
 
